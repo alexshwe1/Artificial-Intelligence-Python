@@ -1,9 +1,22 @@
+"""
+In this assignment, I perform clustering using the publicly available Pokemon stats. 
+Each Pokemon is defined by a row in the data set. Because there are various ways to 
+characterize how strong a Pokemon is, it is often desirable to convert a raw stats sheet 
+into a shorter feature vector. For this project, I represent a Pokemon's strength by two 
+numbers: "x" and "y". "x" represents the Pokemon's total offensive strength, which is defined 
+by Attack + Sp. Atk + Speed. Similarly, "y" represents the Pokemon's total defensive strength, 
+which is defined by Defense + Sp. Def + HP. After each Pokemon becomes that two-dimensional 
+feature vector, I cluster the first 20 Pokemon with hierarchical agglomerative clustering (HAC).
+"""
+
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 
 def load_data(filepath):
+    # takes in a string with a path to a CSV file formatted as in the link above, and returns the first 20 data points 
+    # (without the Generation and Legendary columns but retaining all other columns) in a single structure.
     pokemon = []
     with open(filepath, "r") as csvfile:
         reader = csv.DictReader(csvfile)
@@ -22,9 +35,12 @@ def load_data(filepath):
 
 
 def calculate_x_y(stats):
+    # takes in one row from the data loaded from the previous function, calculates the corresponding x, y values for that Pokemon as 
+    # specified above, and returns them in a single structure.
     return (stats["Attack"] + stats["Sp. Atk"] + stats["Speed"], stats["Defense"] + stats["Sp. Def"] + stats["HP"])
 
 def get_distance(tuple1, tuple2):
+    # helper method for hac
     tuple1_x = tuple1[0]
     tuple1_y = tuple1[1]
     tuple2_x = tuple2[0]
@@ -32,6 +48,8 @@ def get_distance(tuple1, tuple2):
     return math.sqrt((tuple2_x - tuple1_x)**2 + (tuple2_y - tuple1_y)**2)
 
 def hac(dataset):
+    # performs single linkage hierarchical agglomerative clustering on the Pokemon with the (x,y) feature representation, 
+    # and returns a data structure representing the clustering.
     for index in range(len(dataset)):
         tupel = dataset[index]
         if not math.isfinite(tupel[0]) or not math.isfinite(tupel[1]):
@@ -161,6 +179,7 @@ def hac(dataset):
     return matrix
 
 def random_x_y(m):
+    # takes in the number of samples we want to randomly generate, and returns these samples in a single structure.
     return_pokemon = []
     for integer in range(m):
         x = np.random.randint(1, 360)
@@ -169,6 +188,7 @@ def random_x_y(m):
     return return_pokemon
 
 def imshow_hac(dataset):
+    # performs single linkage hierarchical agglomerative clustering on the Pokemon with the (x,y) feature representation, and imshow the clustering process.
     for index in range(len(dataset)):
         tupel = dataset[index]
         if not math.isfinite(tupel[0]) or not math.isfinite(tupel[1]):
