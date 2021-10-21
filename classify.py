@@ -1,8 +1,6 @@
 import os
 import math
 
-#These first two functions require os operations and so are completed for you
-#Completed for you
 def load_training_data(vocab, directory):
     """ Create the list of dictionaries """
     top_level = os.listdir(directory)
@@ -23,7 +21,6 @@ def load_training_data(vocab, directory):
             dataset.append({'label': label, 'bow': bow})
     return dataset
 
-#Completed for you
 def create_vocabulary(directory, cutoff):
     """ Create a vocabulary from the training directory
         return a sorted vocabulary list
@@ -47,8 +44,6 @@ def create_vocabulary(directory, cutoff):
                         vocab[word] += 1
     return sorted([word for word in vocab if vocab[word] >= cutoff])
 
-#The rest of the functions need modifications ------------------------------
-#Needs modifications
 def create_bow(vocab, filepath):
     """ Create a single dictionary for the data
         Note: label may be None
@@ -75,7 +70,6 @@ def create_bow(vocab, filepath):
 
     return bow
 
-#Needs modifications
 def prior(training_data, label_list):
     """ return the prior probability of the label in the training set
         => frequency of DOCUMENTS
@@ -101,7 +95,6 @@ def prior(training_data, label_list):
             
     return logprob
 
-#Needs modifications
 def p_word_given_label(vocab, training_data, label):
     """ return the class conditional probability of label over all words, with smoothing """
 
@@ -139,9 +132,6 @@ def p_word_given_label(vocab, training_data, label):
 
     return word_prob
 
-
-##################################################################################
-#Needs modifications
 def train(training_directory, cutoff):
     """ return a dictionary formatted as follows:
             {
@@ -167,7 +157,6 @@ def train(training_directory, cutoff):
     
     return retval
 
-#Needs modifications
 def classify(model, filepath):
     """ return a dictionary formatted as follows:
             {
