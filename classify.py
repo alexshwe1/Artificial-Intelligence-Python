@@ -1,3 +1,9 @@
+"""
+In this project, I implement a facial analysis program using 
+Principal Component Analysis (PCA), using the skills 
+learned from the linear algebra + PCA lectures.
+"""
+
 import os
 import math
 
