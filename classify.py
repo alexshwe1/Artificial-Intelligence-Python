@@ -1,7 +1,8 @@
 """
-In this project, I implement a facial analysis program using 
-Principal Component Analysis (PCA), using the skills 
-learned from the linear algebra + PCA lectures.
+In this project, I make use of knowledge of probability to tackle the problem of 
+document classification. This project uses the probability background introduced 
+in my lectures in order to make predictions in uncertain situations. I apply 
+concepts like conditional probability, priors, and conditional independence.
 """
 
 import os
